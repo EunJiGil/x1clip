@@ -1,0 +1,5 @@
+.env*
+firmware/
+tools/
+data/
+.amazon-profile/

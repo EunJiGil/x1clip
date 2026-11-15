@@ -1,69 +1,67 @@
 import Image from "next/image";
+import { WaitlistForm } from "./waitlist-form";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+    <>
+      <header className="sticky top-0 z-10 border-b border-black/5 bg-white/80 backdrop-blur-xl">
+        <div className="mx-auto flex h-12 max-w-5xl items-center justify-between px-5">
+          <span className="text-[19px] font-semibold tracking-[-0.04em]">x1</span>
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#waitlist"
+            className="rounded-full bg-[#1d1d1f] px-3.5 py-1 text-[12px] font-medium text-white transition hover:bg-black"
           >
+            Join waitlist
+          </a>
+        </div>
+      </header>
+
+      <main className="mx-auto w-full max-w-5xl flex-1 px-4 pb-24 pt-16 text-center sm:px-5 sm:pt-24">
+        <p className="rise text-[15px] font-semibold text-[#86868b] sm:text-[17px]">x1</p>
+        <h1 className="rise rise-1 mx-auto mt-2 max-w-[860px] text-[40px] font-semibold leading-[1.05] tracking-[-0.045em] sm:text-[72px]">
+          Turn any dumb eyeglasses into AI glasses.
+        </h1>
+        <p className="rise rise-2 mx-auto mt-5 max-w-[560px] text-[17px] leading-relaxed text-[#6e6e73] sm:text-[21px]">
+          A tiny clip for the glasses you already own. It sees what you see, hears what you ask, and answers in your ear.
+        </p>
+
+        <div id="waitlist" className="rise rise-2 mt-8 scroll-mt-32">
+          <WaitlistForm />
+        </div>
+
+        <div className="rise rise-3 mt-16 grid grid-cols-2 gap-2.5 sm:mt-20 sm:gap-4">
+          <div className="relative aspect-[1/1.07] overflow-hidden rounded-[14px] bg-[#f5f5f7] sm:rounded-[22px]">
             <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+              src="/x1-device.gif"
+              alt="The x1 clip held between two fingers"
+              fill
+              unoptimized
+              priority
+              sizes="(max-width: 640px) 50vw, 500px"
+              className="object-cover"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
+          <div className="relative aspect-[1/1.07] overflow-hidden rounded-[14px] bg-[#f5f5f7] sm:rounded-[22px]">
+            <Image
+              src="/x1-worn.jpg"
+              alt="x1 clipped onto the arm of everyday eyeglasses"
+              fill
+              priority
+              sizes="(max-width: 640px) 50vw, 500px"
+              className="object-cover"
+            />
+          </div>
         </div>
+
+        <h2 className="mt-20 text-[34px] font-semibold leading-tight tracking-[-0.045em] sm:mt-28 sm:text-[56px]">
+          Now with Meta Muse.
+        </h2>
+        <p className="mt-2 text-[17px] text-[#6e6e73] sm:text-[21px]">Meet x1. Your glasses, reimagined.</p>
       </main>
-    </div>
+
+      <footer className="border-t border-black/5 py-6 text-center text-[12px] text-[#86868b]">
+        © 2026 x1. Fittings Labs.
+      </footer>
+    </>
   );
 }

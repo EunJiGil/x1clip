@@ -1,14 +1,12 @@
 # x1: turn any eyeglasses into AI glasses
 
-<!-- Demo video: on github.com, edit this README and drag the demo .mp4 here -->
-
-![x1 launch film](docs/x1-launch.gif)
-
 **x1** is a small clip that slides onto the arm of the glasses you already own. It has a forward-facing camera, a microphone and a speaker. Hold the button and ask a question. x1 takes a photo of what you're looking at, works out what you mean, and answers in your ear.
 
-Built at a hackathon by **Fittings Labs**.
+The working prototype is two off-the-shelf boards, an **M5Stack ATOM Echo** (button, mic, speaker) and an **ESP32-CAM**, about **$25 in parts**. A Next.js server on a laptop does speech-to-text, a vision LLM call and text-to-speech. From releasing the button to having the answer text takes about **2.8 s** (median of 14 real questions). See [Measured latency](#measured-latency).
 
-- Waitlist site: https://x1landing-three.vercel.app
+Built solo at a hackathon by **Fittings Labs**. It's an early prototype, not a product. See [Limits](#notes-and-limits) and [What's next](#whats-next).
+
+<!-- Demo video of the real prototype: on github.com, edit this README and drag the .mp4 here -->
 
 ## What it does
 
@@ -49,14 +47,32 @@ A live **dashboard** (`/dashboard`) shows each question, the photo taken at that
 
 The Echo LED shows the state: blue blinking = Wi-Fi, red = listening, yellow = thinking, green = speaking.
 
+The two boards never talk to each other. Each one joins the laptop's hotspot on its own, and the server coordinates them over plain HTTP.
+
+## Measured latency
+
+These numbers come from the server log of 14 real questions that included a photo, on a laptop hotspot calling the OpenAI API.
+
+| Stage | Time |
+|---|---|
+| Button released → speech-to-text done | ~1.0–2.0 s |
+| Speech-to-text → vision LLM reply text | ~1.0–2.1 s |
+| **Button released → reply text** | **2.2–4.2 s (median ~2.8 s)** |
+
+- **The photo adds almost no delay.** The camera is triggered the moment the button is pressed, so the JPEG has usually arrived before you finish talking.
+- **Text-to-speech time is not included.** The time until the first audio plays wasn't logged.
+- **A missing photo is slow.** When the photo didn't arrive, the server waited 3 s for it and then answered without it, which took ~5.5 s.
+
 ## Hardware
 
-| Part | Role |
-|---|---|
-| M5Stack **ATOM Echo** (ESP32-PICO) | Button, PDM microphone, I2S speaker, RGB LED |
-| **ESP32-CAM** (AI Thinker, OV2640) + ESP32-CAM-MB | Camera; the MB board is only for USB flashing and power |
-| Laptop | Runs the server and a 2.4 GHz Mobile Hotspot the devices join |
-| USB power bank | Powers the devices while worn |
+| Part | Role | Approx. price |
+|---|---|---|
+| M5Stack **ATOM Echo** (ESP32-PICO) | Button, PDM microphone, I2S speaker, RGB LED | ~$13 |
+| **ESP32-CAM** (AI Thinker, OV2640) + ESP32-CAM-MB | Camera, 640×480 JPEG; the MB board is only for USB flashing and power | ~$10 |
+| Laptop | Runs the server and a 2.4 GHz Mobile Hotspot the devices join | — |
+| USB power bank | Powers the devices while worn | any |
+
+I haven't measured power draw yet.
 
 ## Repository layout
 
@@ -121,9 +137,29 @@ The landing page and `/api/waitlist` deploy to Vercel as they are. Connect **Ups
 
 Next.js 16 (App Router, route handlers) · TypeScript · Tailwind CSS 4 · OpenAI (gpt-4o-mini-transcribe, gpt-4.1-mini vision, gpt-4o-mini-tts) · Playwright · Upstash Redis · Vercel · Arduino / ESP32 (I2S PDM mic, I2S speaker, esp32-camera)
 
+## What's next
+
+- **No laptop.** Move the server to the cloud and use the phone as the hub (clip → BLE → phone → cloud), so x1 works outdoors.
+- **One board.** Replace the two modules with a single ESP32-S3 that has a camera and mic, and sleep between button presses.
+- **Faster answers.** Use streaming speech-to-text and speech-to-speech models instead of three separate calls.
+- **Power.** Measure the real current draw and size a small battery from it.
+
 ## Notes and limits
 
-- The product renders and the launch film in this README were made with generative AI image and video models. The working prototype is the M5Stack ATOM Echo plus ESP32-CAM described above.
+- The working prototype is two dev boards held to the glasses, not the slim clip in the concept render below.
+- There is no wake word. x1 only listens while the button is held, and the camera takes one photo per question; it never streams video.
 - Calorie numbers are model estimates from a single photo, not nutrition facts.
 - Amazon has no public add-to-cart API, so x1 drives a real browser. It adds at most 3 items per request, pauses between actions, and stops before checkout.
 - Server state is held in memory for the demo. It resets when the server restarts.
+
+## Concept
+
+Where I'd like the clip to end up. This is a concept film made with generative AI image and video models, **not the prototype**.
+
+![x1 concept film (AI-generated)](docs/x1-launch.gif)
+
+If you'd like to follow along, there's a waitlist: https://x1landing-three.vercel.app
+
+## License
+
+MIT. See [LICENSE](LICENSE).

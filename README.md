@@ -173,7 +173,7 @@ Where I'd like the clip to end up. This is a concept film made with generative A
 
 ![x1 concept film (AI-generated)](docs/x1-launch.gif)
 
-If you'd like to follow along, there's a waitlist: https://x1landing-three.vercel.app
+If you'd like to follow along, there's a waitlist: https://x1glasses.com
 
 ## License
 

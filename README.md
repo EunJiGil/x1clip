@@ -4,7 +4,7 @@
 
 The working prototype is two off-the-shelf boards, an **M5Stack ATOM Echo** (button, mic, speaker) and an **ESP32-CAM**, about **$25 in parts**. A Next.js server on a laptop does speech-to-text, a vision LLM call and text-to-speech. From releasing the button to having the answer text takes about **2.8 s** (median of 14 real questions). See [Measured latency](#measured-latency).
 
-Built solo at a hackathon by **Fittings Labs**. It's an early prototype, not a product. See [Limits](#notes-and-limits) and [What's next](#whats-next).
+Built solo at **VexoHacks**, a hackathon held at Y Combinator, where it was a **finalist**. It's an early prototype, not a product. See [Limits](#notes-and-limits) and [What's next](#whats-next).
 
 ### Demo (real prototype, real speed, not sped up)
 https://github.com/user-attachments/assets/21703cc4-f6f2-4690-8a8f-b9c350118c01
@@ -165,6 +165,13 @@ Next.js 16 (App Router, route handlers) · TypeScript · Tailwind CSS 4 · OpenA
 - Calorie numbers are model estimates from a single photo, not nutrition facts.
 - Amazon has no public add-to-cart API, so x1 drives a real browser. It adds at most 3 items per request, pauses between actions, and stops before checkout.
 - Server state is held in memory for the demo. It resets when the server restarts.
+
+## What's next
+
+- **Measure power draw** and find out how long a small battery lasts with the camera idle between questions.
+- **One board, one clip.** Replace the two dev boards and tape with a single small board that clips onto the glasses arm.
+- **Faster answers.** Log time to first audio, and start speaking the reply while it is still being generated.
+- **Run without the laptop.** Move the server off the laptop hotspot so x1 works over a phone connection.
 
 ## Concept
 

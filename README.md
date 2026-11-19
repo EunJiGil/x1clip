@@ -7,9 +7,8 @@ The working prototype is two off-the-shelf boards, an **M5Stack ATOM Echo** (but
 Built solo at a hackathon by **Fittings Labs**. It's an early prototype, not a product. See [Limits](#notes-and-limits) and [What's next](#whats-next).
 
 ### Demo (real prototype, real speed, not sped up)
+https://github.com/user-attachments/assets/21703cc4-f6f2-4690-8a8f-b9c350118c01
 
-<!-- On github.com: edit this README, drag x1-demo.mp4 onto the line below, and replace this comment + the line with the generated https://github.com/user-attachments/... URL -->
-DEMO_VIDEO_URL
 
 The pauses are the real latency: the button is released, the photo and question go to the laptop, and the answer comes back through the speaker.
 

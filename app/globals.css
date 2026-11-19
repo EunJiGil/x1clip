@@ -2,7 +2,13 @@
 
 @theme inline {
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", var(--font-inter), "Helvetica Neue", Arial, sans-serif;
+  /* x1 brand blue, taken from the clip's LED glow */
+  --color-accent: #3d6ee6;
+  --color-accent-hover: #2f5fd6;
 }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
 
 :root {
   color-scheme: light;

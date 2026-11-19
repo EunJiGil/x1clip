@@ -37,7 +37,7 @@ export function WaitlistForm() {
 
   return (
     <form onSubmit={onSubmit} className="mx-auto max-w-[440px]">
-      <div className="flex items-center gap-1.5 rounded-full border border-[#d2d2d7] bg-white p-1.5 transition focus-within:border-[#0071e3] focus-within:ring-4 focus-within:ring-[#0071e3]/15">
+      <div className="flex items-center gap-1.5 rounded-full border border-[#d2d2d7] bg-white p-1.5 transition focus-within:border-accent focus-within:ring-4 focus-within:ring-accent/15">
         <input
           type="email"
           required
@@ -51,7 +51,7 @@ export function WaitlistForm() {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="shrink-0 rounded-full bg-[#0071e3] px-5 py-2.5 text-[15px] font-medium text-white transition hover:bg-[#0077ed] disabled:opacity-60"
+          className="shrink-0 rounded-full bg-accent px-5 py-2.5 text-[15px] font-medium text-white transition hover:bg-accent-hover disabled:opacity-60"
         >
           {status === "loading" ? "Joining…" : "Join waitlist"}
         </button>

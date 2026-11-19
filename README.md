@@ -6,7 +6,12 @@ The working prototype is two off-the-shelf boards, an **M5Stack ATOM Echo** (but
 
 Built solo at a hackathon by **Fittings Labs**. It's an early prototype, not a product. See [Limits](#notes-and-limits) and [What's next](#whats-next).
 
-<!-- Demo video of the real prototype: on github.com, edit this README and drag the .mp4 here -->
+### Demo (real prototype, real speed, not sped up)
+
+<!-- On github.com: edit this README, drag x1-demo.mp4 onto the line below, and replace this comment + the line with the generated https://github.com/user-attachments/... URL -->
+DEMO_VIDEO_URL
+
+The pauses are the real latency: the button is released, the photo and question go to the laptop, and the answer comes back through the speaker.
 
 ## What it does
 
@@ -19,6 +24,12 @@ Built solo at a hackathon by **Fittings Labs**. It's an early prototype, not a p
 | Any general question | Answers in 1–3 short spoken sentences, remembering the last few turns |
 
 A live **dashboard** (`/dashboard`) shows each question, the photo taken at that moment, the answer, a calorie breakdown or the shopping list, and Amazon add-to-cart progress.
+
+| "What am I looking at?" | "Can you recommend some good ramen restaurants near Y Combinator?" |
+|---|---|
+| ![Dashboard: photo from the clip camera, answer and calorie breakdown](docs/dashboard-nutrition.jpg) | ![Dashboard: general question with conversation history](docs/dashboard-ask.jpg) |
+
+The photo on the left of each card is the actual 640×480 frame from the ESP32-CAM at the moment the button was pressed.
 
 ## How it works
 
@@ -64,6 +75,10 @@ These numbers come from the server log of 14 real questions that included a phot
 - **A missing photo is slow.** When the photo didn't arrive, the server waited 3 s for it and then answered without it, which took ~5.5 s.
 
 ## Hardware
+
+<img src="docs/prototype.jpg" width="420" alt="The prototype: ESP32-CAM and ATOM Echo taped to a pair of glasses">
+
+The current prototype, honestly: an ESP32-CAM and an ATOM Echo held onto the glasses arm with tape, powered over USB.
 
 | Part | Role | Approx. price |
 |---|---|---|

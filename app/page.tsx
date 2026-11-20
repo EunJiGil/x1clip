@@ -87,6 +87,13 @@ const steps = [
   ["Hear the answer", "A short spoken reply in your ear, in about three seconds."],
 ];
 
+const faqs = [
+  [
+    "How much will x1 cost?",
+    "Waitlist members will get early-bird pricing of $159. After that, we’re aiming for around $199. x1 is still in development, so final pricing may change.",
+  ],
+];
+
 function HeroLoop({ video, poster, alt }: { video: string; poster: StaticImageData; alt: string }) {
   return (
     <div className="relative aspect-square overflow-hidden rounded-[16px] bg-[#f5f5f7] ring-1 ring-black/[0.06] ring-inset sm:rounded-[24px]">
@@ -277,6 +284,27 @@ export default function Home() {
               </li>
             ))}
           </ol>
+        </section>
+
+        {/* FAQ */}
+        <section className="mx-auto mt-24 max-w-3xl px-4 sm:mt-32 sm:px-5">
+          <Heading eyebrow="FAQ" title="Questions," sub="answered." />
+          <div className="mt-10 border-b border-black/10 sm:mt-14">
+            {faqs.map(([q, a]) => (
+              <details key={q} className="group border-t border-black/10">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-[17px] font-semibold tracking-[-0.01em] sm:text-[19px] [&::-webkit-details-marker]:hidden">
+                  {q}
+                  <span
+                    aria-hidden
+                    className="text-[22px] font-normal leading-none text-[#86868b] transition-transform group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="-mt-1 pb-5 text-[15px] leading-relaxed text-[#6e6e73] sm:text-[17px]">{a}</p>
+              </details>
+            ))}
+          </div>
         </section>
 
         {/* Closing CTA */}

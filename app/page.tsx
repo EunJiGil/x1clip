@@ -320,7 +320,7 @@ export default function Home() {
       </main>
 
       <footer className="border-t border-black/5 py-6 text-center text-[12px] text-[#86868b]">
-        © 2026 x1. Fittings Labs.
+        © 2026 x1. Fittings Labs · San Francisco, CA
       </footer>
     </>
   );

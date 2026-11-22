@@ -20,6 +20,8 @@ export function WaitlistForm() {
       });
       const data = (await res.json()) as { ok?: boolean; error?: string };
       if (!res.ok || !data.ok) throw new Error(data.error ?? "Something went wrong.");
+      // Meta 픽셀 전환 이벤트 (광고 최적화용)
+      (window as { fbq?: (...args: unknown[]) => void }).fbq?.("track", "Lead");
       setStatus("done");
     } catch (err) {
       setStatus("error");

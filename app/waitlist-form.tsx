@@ -4,6 +4,9 @@ import { useState } from "react";
 
 type Status = "idle" | "loading" | "done" | "error";
 
+// Stripe Payment Link: $19 환불 가능 얼리버드 예약금 (live)
+const PREORDER_URL = process.env.NEXT_PUBLIC_PREORDER_URL ?? "https://buy.stripe.com/3cI7sEemV1Bj5Mv9Z40co00";
+
 export function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
@@ -30,10 +33,31 @@ export function WaitlistForm() {
   }
 
   if (status === "done") {
+    // Stripe Payment Link: 이메일 미리 채워서 넘김 (선택 단계, 링크 없으면 숨김)
+    const preorderUrl = PREORDER_URL
+      ? `${PREORDER_URL}?prefilled_email=${encodeURIComponent(email)}`
+      : null;
     return (
-      <p className="mx-auto max-w-[440px] rounded-full bg-[#f5f5f7] px-6 py-4 text-[17px] font-medium" role="status">
-        You&rsquo;re on the list. We&rsquo;ll be in touch.
-      </p>
+      <div className="mx-auto max-w-[440px] rounded-3xl bg-[#f5f5f7] px-6 py-5" role="status">
+        <p className="text-[17px] font-medium">You&rsquo;re on the list. We&rsquo;ll be in touch.</p>
+        {preorderUrl && (
+          <>
+            <p className="mt-3 text-[15px] leading-snug text-[#6e6e73]">
+              Want to lock in the $159 early-bird price? Reserve with a $19 deposit. It comes off the final
+              price, and you can get a full refund anytime before x1 ships.
+            </p>
+            <a
+              href={preorderUrl}
+              onClick={() =>
+                (window as { fbq?: (...args: unknown[]) => void }).fbq?.("track", "InitiateCheckout")
+              }
+              className="mt-4 inline-block rounded-full bg-accent px-5 py-2.5 text-[15px] font-medium text-white transition hover:bg-accent-hover"
+            >
+              Reserve for $19 (refundable)
+            </a>
+          </>
+        )}
+      </div>
     );
   }
 

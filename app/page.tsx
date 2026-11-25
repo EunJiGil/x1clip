@@ -21,6 +21,9 @@ import clipHand from "./_media/clip-hand.jpg";
 import glassesBlack from "./_media/glasses-black.jpg";
 import glassesTortoise from "./_media/glasses-tortoise.jpg";
 import glassesSun from "./_media/glasses-sun.jpg";
+import protoHand from "./_media/proto-hand.jpg";
+import protoDashboard from "./_media/proto-dashboard.jpg";
+import teamYc from "./_media/team-yc.png";
 
 const useCases: {
   src: StaticImageData;
@@ -93,8 +96,16 @@ const steps = [
 
 const faqs = [
   [
+    "Is x1 real?",
+    "Yes. A working prototype already answers questions about what it sees, in about three seconds. The slim clip shown on this page is a concept render of where it’s headed.",
+  ],
+  [
     "How much will x1 cost?",
     "Waitlist members will get early-bird pricing of $159. After that, we’re aiming for around $199. x1 is still in development, so final pricing may change.",
+  ],
+  [
+    "What happens to my $19 reservation?",
+    "It holds the $159 early-bird price and is credited when x1 ships (estimated 2027). Payment is handled by Stripe. Email hello@x1glasses.com anytime before shipping for a full refund.",
   ],
 ];
 
@@ -306,6 +317,63 @@ fbq('init','${META_PIXEL_ID}');fbq('track','PageView');`}
               </li>
             ))}
           </ol>
+        </section>
+
+        {/* Proof: the real prototype */}
+        <section className="mx-auto mt-24 max-w-5xl px-4 sm:mt-32 sm:px-5">
+          <Heading eyebrow="Not just a render" title="It already works." sub="Here’s the prototype." />
+          <p className="mx-auto mt-5 max-w-[560px] text-center text-[17px] leading-relaxed text-[#6e6e73] sm:text-[19px]">
+            x1 started at VexoHacks, a hackathon held at Y Combinator, where it was a finalist.
+          </p>
+
+          {/* 세 장 한 줄: 폭 비율(4 : 8.6 : 4)을 이미지 비율에 맞춰 높이가 같게. 모바일은 스크린샷 위 + 사진 두 장 */}
+          <div className="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-2 sm:mt-12 sm:grid-cols-[4fr_8.6fr_4fr] sm:gap-3">
+            <figure>
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[14px] bg-[#f5f5f7] sm:rounded-[18px]">
+                <Image
+                  src={protoHand}
+                  alt="The working x1 prototype held in a hand next to a pair of glasses"
+                  placeholder="blur"
+                  fill
+                  sizes="(max-width: 640px) 50vw, 220px"
+                  className="object-cover object-[50%_58%]"
+                />
+              </div>
+              <figcaption className="mt-2 px-0.5 text-[12px] text-[#86868b]">The prototype.</figcaption>
+            </figure>
+            <figure className="order-first col-span-2 sm:order-none sm:col-span-1">
+              <div className="relative aspect-[1600/930] overflow-hidden rounded-[14px] bg-[#111] sm:rounded-[18px]">
+                <Image
+                  src={protoDashboard}
+                  alt="A real answer from the prototype: it identifies a bowl of ramen and estimates 710 kcal"
+                  placeholder="blur"
+                  fill
+                  sizes="(max-width: 640px) 100vw, 480px"
+                  className="object-cover"
+                />
+              </div>
+              <figcaption className="mt-2 px-0.5 text-[12px] text-[#86868b]">
+                A real answer from the prototype, unedited.
+              </figcaption>
+            </figure>
+            <figure>
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[14px] bg-[#f5f5f7] sm:rounded-[18px]">
+                <Image
+                  src={teamYc}
+                  alt="An x1 engineer holding the prototype and a laptop at Y Combinator"
+                  placeholder="blur"
+                  fill
+                  sizes="(max-width: 640px) 50vw, 220px"
+                  className="object-cover object-[60%_50%]"
+                />
+              </div>
+              <figcaption className="mt-2 px-0.5 text-[12px] text-[#86868b]">At VexoHacks, held at Y Combinator.</figcaption>
+            </figure>
+          </div>
+
+          <p className="mt-10 text-center text-[22px] font-semibold tracking-[-0.03em] sm:mt-12 sm:text-[28px]">
+            Built by engineers from Microsoft and AWS.
+          </p>
         </section>
 
         {/* FAQ */}
